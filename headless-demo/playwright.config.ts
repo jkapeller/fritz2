@@ -1,5 +1,7 @@
 import type { PlaywrightTestConfig } from '@playwright/test';
 import { devices } from '@playwright/test';
+import url from "url";
+import path from "path";
 
 /**
  * Read environment variables from file.
@@ -14,6 +16,7 @@ const config: PlaywrightTestConfig = {
   testDir: './tests',
   /* Maximum time one test can run for. */
   timeout: 45 * 1000,
+  fullyParallel: true,
   expect: {
     /**
      * Maximum time expect() should wait for the condition to be met.
@@ -34,9 +37,10 @@ const config: PlaywrightTestConfig = {
     /* Maximum time each action such as `click()` can take. Defaults to 0 (no limit). */
     actionTimeout: 0,
     /* Base URL to use in actions like `await page.goto('/')`. */
-    baseURL: 'https://next.fritz2.dev/headless-demo/',
+    //baseURL: 'https://next.fritz2.dev/headless-demo/',
     /* Uncomment this to test local running demos as testing base */
     //baseURL: 'http://localhost:8080/',
+    baseURL: url.pathToFileURL(path.join(__dirname, 'build/distributions/index.html')).toString(),
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
