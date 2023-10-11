@@ -16,7 +16,7 @@ import org.w3c.dom.*
  *
  * For more information refer to the [official documentation](https://www.fritz2.dev/headless/modal/)
  */
-class Modal : OpenClose(), WithJob {
+class Modal : OpenClose() {
 
     override val job: Job = Job()
     var restoreFocus: Boolean = true
